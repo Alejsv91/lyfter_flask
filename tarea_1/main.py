@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from enums.status import Status
-from helpers.task_helper import return_filtered_task, validate_task_attributes, ensure_unique_id
+from helpers.task_helper import *
 from helpers.json_helper import read_json, write_json
 
 app = Flask(__name__)
@@ -21,3 +21,16 @@ def post_task():
     tasks.append(json_body_request)
     write_json(tasks)
     return jsonify(message="task created"),200
+
+@app.route("/tasks", methods=["PUT"])
+def put_task():
+    json_body_request = request.get_json(silent=True)
+    result = update_task_by_id(json_body_request)
+    return jsonify(message=result), 200
+
+@app.route("/tasks/<int:task_id>", methods=["DELETE"])
+def delete_task(task_id: int):
+    deleted_task = delete_task_by_id(task_id)
+    return jsonify(message="Task deleted successfully", task=deleted_task), 200
+
+    
