@@ -76,8 +76,3 @@ def delete_task_by_id(task_id: int) -> dict:
     write_json(tasks)
     
     return task_to_delete
-
-
-     
-    
-    
