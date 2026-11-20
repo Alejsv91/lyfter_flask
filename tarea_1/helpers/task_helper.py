@@ -1,32 +1,48 @@
+from flask import abort
 from enums.status import Status
 from helpers.json_helper import read_json
-from flask import jsonify
 
 def validate_status(status: str) -> Status:
     try:
-        return Status(status.lower().strip())
-    except:
-        return jsonify("The current status is not allowed, please add the next options: 'in progress', 'pending', 'completed'"), 400
+        return Status(str(status).lower().strip())
+    except ValueError:
+        valid_options = [s.value for s in Status]
+        abort(400, description=f"The current status is not allowed, please use: {valid_options}")
+
+def return_filtered_task(task_filter: str | None) -> list[dict]:
+    tasks = read_json()
     
-def return_filtered_task(task_filter: str) -> list[object]:
-    filtered_tasks = read_json()
-    try:    
-        status_enum = validate_status(task_filter)
-        return list(
-                filter(lambda task: str(task["status"]).lower().strip() == status_enum, filtered_tasks))
-    except:
-        return jsonify("Algun error")
-        
-def validate_task_attributes(request_body: dict):
+    # 1. Primero verificamos si es None (usa 'is None' por convención PEP 8)
+    # 2. Solo si NO es None, Python evalúa la segunda parte (.lower().strip())
+    if task_filter is None or task_filter.strip() == "":
+        return tasks
+    
+    status_enum = validate_status(task_filter)
+    
+    return [
+        task for task in tasks
+        if str(task.get("status", "")).lower().strip() == status_enum.value
+    ]
+
+
+def validate_task_attributes(request_body: dict) -> None:
     if not isinstance(request_body, dict):
-        return jsonify(message="Request body must be a valid JSON Object"),400
+        abort(400, description="Request body must be a valid JSON Object")
     
     required_attributes = ['id', 'title', 'description', 'status']
     
     for att in required_attributes:
         value = request_body.get(att)
-        
-        if value is None or (isinstance(value, str)and not value.strip()):
-            return jsonify(message=f"'{att}' attribute is required"), 400
-        
+        if value is None or (isinstance(value, str) and not value.strip()):
+            abort(400, description=f"'{att}' attribute is required")
+            
     validate_status(request_body.get('status'))
+    
+def ensure_unique_id(task_id: int, tasks: list[dict]) -> None:
+    if any(task.get("id") == task_id for task in tasks):
+        abort(409, description=f"A task with id '{task_id}' already exists.")
+
+    
+     
+    
+    

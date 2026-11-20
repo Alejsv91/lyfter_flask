@@ -1,20 +1,48 @@
 [
     {
-        "id":1,
-        "title":"Complete the first exercise",
-        "description":"This task is related with flask and we need to create some endpoint to handle CRUD",
-        "status":"In Progress"
+        "id": 1,
+        "title": "Complete the first exercise",
+        "description": "This task is related with flask and we need to create some endpoint to handle CRUD",
+        "status": "In Progress"
     },
     {
-        "id":2,
-        "title":"House Cleaning",
-        "description":"We need to clean the house and desinfect all the badrooms",
-        "status":"Completed"
+        "id": 2,
+        "title": "House Cleaning",
+        "description": "We need to clean the house and desinfect all the badrooms",
+        "status": "Completed"
     },
     {
-        "id":3,
-        "title":"Crossfit Session",
-        "description":"We need to assist to Crossfit Sessions",
-        "status":"Pending"
+        "id": 3,
+        "title": "Crossfit Session",
+        "description": "We need to assist to Crossfit Sessions",
+        "status": "Pending"
+    },
+    {
+        "test": "test 1",
+        "id": 1,
+        "title": "Feed the dogs",
+        "description": "Feed Enzo, Eva and Simón",
+        "status": "pending"
+    },
+    {
+        "test": "test 1",
+        "id": 1,
+        "title": "Feed the dogs",
+        "description": "Feed Enzo, Eva and Simón",
+        "status": "pending"
+    },
+    {
+        "test": "test 1",
+        "id": 4,
+        "title": "Feed the dogs",
+        "description": "Feed Enzo, Eva and Simón",
+        "status": "pending"
+    },
+    {
+        "test": "test 1",
+        "id": 6,
+        "title": "Continue Lyfter",
+        "description": "Create the first flask project",
+        "status": "pending"
     }
 ]
