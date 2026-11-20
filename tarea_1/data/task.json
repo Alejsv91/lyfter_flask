@@ -1,0 +1,20 @@
+[
+    {
+        "id":1,
+        "title":"Complete the first exercise",
+        "description":"This task is related with flask and we need to create some endpoint to handle CRUD",
+        "status":"In Progress"
+    },
+    {
+        "id":2,
+        "title":"House Cleaning",
+        "description":"We need to clean the house and desinfect all the badrooms",
+        "status":"Completed"
+    },
+    {
+        "id":3,
+        "title":"Crossfit Session",
+        "description":"We need to assist to Crossfit Sessions",
+        "status":"Pending"
+    }
+]
