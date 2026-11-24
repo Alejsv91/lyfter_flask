@@ -1,9 +1,36 @@
 [
     {
-        "test": "test 1",
+        "test": "updating task id 6",
         "id": 6,
+        "title": "Continue Lyfter update title v2",
+        "description": "Create the first flask project updated description",
+        "status": "in progress"
+    },
+    {
+        "test": "test 1",
+        "id": 1,
         "title": "Continue Lyfter",
-        "description": "Create the first flask project",
+        "description": "Create the first post for flask project",
         "status": "pending"
+    },
+    {
+        "test": "test 1",
+        "id": 2,
+        "title": "Continue Lyfter",
+        "description": "Create the first post for flask project",
+        "status": "pending"
+    },
+    {
+        "test": 1,
+        "title": "Create the first task as completed",
+        "description": "Create the first post for flask project with completed status",
+        "status": "completed",
+        "id": 10
+    },
+    {
+        "title": "Test Title",
+        "description": "Description for a new task",
+        "status": "pending",
+        "id": 11
     }
 ]
