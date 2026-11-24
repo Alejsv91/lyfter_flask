@@ -22,11 +22,11 @@ def return_filtered_task(task_filter: str | None) -> list[dict]:
         if str(task.get("status", "")).lower().strip() == status_enum.value
     ]
 
-def validate_task_attributes(request_body: dict) -> None:
+def validate_task_attributes(request_body: dict, custom_attributes: list[str] | None) -> None:
     if not isinstance(request_body, dict):
         abort(400, description="Request body must be a valid JSON Object")
     
-    required_attributes = ['id', 'title', 'description', 'status']
+    required_attributes = ['id', 'title', 'description', 'status'] if custom_attributes == None else custom_attributes
     
     for att in required_attributes:
         value = request_body.get(att)
@@ -36,13 +36,13 @@ def validate_task_attributes(request_body: dict) -> None:
     validate_status(request_body.get('status'))
     
 def ensure_unique_id(task_id: int, tasks: list[dict]) -> None:
-    if any(task.get("id") == task_id for task in tasks):
+    if any(int(task.get("id")) == int(task_id) for task in tasks):
         abort(409, description=f"A task with id '{task_id}' already exists.")
 
-def update_task_by_id(request_body: dict) -> dict:
-    validate_task_attributes(request_body)
+def update_task_by_id(task_id: int, request_body: dict) -> dict:
+    validate_task_attributes(request_body, ['title', 'description', 'status'] )
     
-    task_id = request_body.get("id")
+    task_id = task_id
     tasks = read_json()
     
     update_task = next((t for t in tasks if t.get("id") == task_id), None)
