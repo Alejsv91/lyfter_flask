@@ -1,10 +1,10 @@
 [
     {
-        "test": "test update 3",
+        "test": "updating task id 6",
         "id": 6,
-        "title": "Continue Lyfter",
-        "description": "Create the first flask project",
-        "status": "pending"
+        "title": "Continue Lyfter update title",
+        "description": "Create the first flask project updated description",
+        "status": "in progress"
     },
     {
         "test": "test 1",
