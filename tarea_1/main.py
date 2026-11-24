@@ -23,8 +23,8 @@ def get_task():
 @app.route("/tasks", methods=["POST"])
 def post_task():
     json_body_request = request.json
-    json_body_request['id'] = int(json_body_request['id'])
     validate_task_attributes(json_body_request, None)
+    json_body_request['id'] = require_int(json_body_request['id'])
     
     tasks = read_json()
     ensure_unique_id(json_body_request['id'], tasks)
