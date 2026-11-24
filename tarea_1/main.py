@@ -2,8 +2,18 @@ from flask import Flask, request, jsonify
 from enums.status import Status
 from helpers.task_helper import *
 from helpers.json_helper import read_json, write_json
+from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
+
+@app.errorhandler(HTTPException)
+def handle_http_exception(error):
+    response = {
+        "error": error.name,
+        "message": error.description,
+        "status_code": error.code
+    }
+    return jsonify(response), error.code
 
 @app.route("/tasks", methods=["GET"])
 def get_task():
