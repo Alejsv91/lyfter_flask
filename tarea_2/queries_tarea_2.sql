@@ -52,28 +52,28 @@ CREATE SCHEMA IF NOT EXISTS lyfter_car_rental
 
 	--5. Un script que genere un alquiler nuevo con los datos de un usuario y un automovil
 	/*SELECT *
-	FROM loans;
+	FROM rentals;
 
 	SELECT *
-	FROM loan_statuses;
+	FROM rental_statuses;
 	
-	INSERT INTO loan_statuses (description)
+	INSERT INTO rental_statuses (description)
 	VALUES ('pending');
-	INSERT INTO loan_statuses (description)
+	INSERT INTO rental_statuses (description)
 	VALUES ('active');
-	INSERT INTO loan_statuses (description)
+	INSERT INTO rental_statuses (description)
 	VALUES ('completed');
-	INSERT INTO loan_statuses (description)
+	INSERT INTO rental_statuses (description)
 	VALUES ('overdue');
-	INSERT INTO loan_statuses (description)
+	INSERT INTO rental_statuses (description)
 	VALUES ('canceled');
 
-	INSERT INTO loans (user_id, car_id, loan_status_id)
+	INSERT INTO rentals (user_id, car_id, rental_status_id)
 	VALUES (2, 4, 2)*/
 
 	--6. Un script que confirme la devolución del auto al completar el alquiler, colocando el auto como disponible y completando el estado del alquiler
-	UPDATE loans
-	SET loan_status_id = 3
+	UPDATE rentals
+	SET rental_status_id = 3
 	WHERE id = 1;
 
 	UPDATE cars
