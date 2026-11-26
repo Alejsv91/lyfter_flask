@@ -43,7 +43,7 @@ CREATE SCHEMA IF NOT EXISTS lyfter_car_rental
 	--4. Un script que cambie el estado de un automovil
 	-- Para esto voy a crear un estado adicional en la tabla car_statuses
 	/*INSERT INTO car_statuses (description)
-	VALUES ('under maintenance');
+	VALUES ('available');
 
 	-- Luego procedo a crear el cambio de status
 	UPDATE cars
@@ -72,6 +72,32 @@ CREATE SCHEMA IF NOT EXISTS lyfter_car_rental
 	VALUES (2, 4, 2)*/
 
 	--6. Un script que confirme la devolución del auto al completar el alquiler, colocando el auto como disponible y completando el estado del alquiler
+	UPDATE loans
+	SET loan_status_id = 3
+	WHERE id = 1;
+
+	UPDATE cars
+	SET car_status_id = 5
+	WHERE id = 1; --5 es available;
+
+	--7. Un script que deshabilite un automovil del alquiler
+	UPDATE cars
+	SET car_status_id = 6
+	WHERE id = 4;
+
+	--8. Un script que obtenga todos los automoviles alquilados, y otro que obtenga todos los disponibles.
+	SELECT *
+	FROM cars
+	WHERE car_status_id = 4;
+
+	SELECT *
+	FROM cars
+	WHERE car_status_id = 5;
+
+	
+
+
+	
 
 	
 
