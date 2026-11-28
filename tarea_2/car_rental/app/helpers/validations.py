@@ -1,4 +1,5 @@
 from datetime import date, datetime
+import re
 
 def is_valid_string( value: object) -> bool:
         if not isinstance(value, str):
@@ -11,3 +12,7 @@ def is_valid_date(value: object):
 
 def is_valid_bool(value: object):
     return isinstance(value, bool)
+
+def is_valid_email(correo: str) -> bool:
+  patron = r"^[\w\.-]+@[\w\.-]+\.\w{2,}$"
+  return bool(re.match(patron, correo))

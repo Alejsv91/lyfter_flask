@@ -1,8 +1,9 @@
 from db import PgManager
 from datetime import date
-from helpers.validations import is_valid_string, is_valid_date, is_valid_bool
+from helpers.validations import *
 from helpers.sql_loader import load_sql
 from db import PgManager
+import re
 import traceback
 
 class UserRepository:
@@ -25,23 +26,8 @@ class UserRepository:
         
     def create_user(self, name: str, last_name: str, email: str, username: str, password: str, birthdate: date, active_account: bool):
         try:
-            string_fields ={
-                "name":name,
-                "last_name": last_name,
-                "email": email,
-                "username": username,
-                "password": password
-            }
-            for field_name, value in string_fields.items():
-                if not is_valid_string(value):
-                   raise ValueError(f"Current parameter {field_name} must be a string") 
             
-            if not is_valid_date(birthdate):
-                raise ValueError(f"birthdate must be a valid date")
-            
-            if not is_valid_bool(active_account):
-                raise ValueError(f"active_account should be a boolean")
-            
+            # user creation
             query = load_sql("create_user.sql")
             params = (name, last_name, email, username, password, birthdate, active_account)
             
