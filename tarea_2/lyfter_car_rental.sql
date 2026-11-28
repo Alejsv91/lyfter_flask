@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS models (
     model_name VARCHAR(100) NOT NULL,
     fabrication_year INTEGER NOT NULL,
     make_id INTEGER NOT NULL REFERENCES makes(id) ON DELETE CASCADE
-);*/
+);
 
 CREATE TABLE IF NOT EXISTS car_statuses (
 id SERIAL PRIMARY KEY,
@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS rentals (
     rental_date DATE NOT NULL DEFAULT CURRENT_DATE,
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     car_id INTEGER NOT NULL REFERENCES cars(id) ON DELETE CASCADE,
-    rental_status_id INTEGER NOT NULL REFERENCES loan_statuses(id) ON DELETE CASCADE
-);*/
+    rental_status_id INTEGER NOT NULL REFERENCES rental_statuses(id) ON DELETE CASCADE
+);
 
 
 /*INSERT INTO users (name, last_name, email, username, password, birthdate, active_account) VALUES
